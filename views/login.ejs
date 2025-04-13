@@ -1,0 +1,80 @@
+<%- include('partials/header') %>
+<style>
+  /* Romantic background (optional subtle gradient for depth) */
+  .romantic-bg {
+    background: linear-gradient(180deg, #fff1f2 0%, #f9e8eb 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Falling hearts animation */
+  @keyframes dropHeart {
+    0% {
+      transform: translateY(-100vh);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+
+  .falling-hearts::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .falling-heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    /* Solid filled heart SVG in rose color */
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="%23f43f5e"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+    animation: dropHeart linear infinite;
+    will-change: transform, opacity;
+  }
+
+  /* Randomize positions and timing */
+  .falling-heart:nth-child(1) { left: 10%; animation-duration: 4s; animation-delay: 0s; }
+  .falling-heart:nth-child(2) { left: 20%; animation-duration: 5s; animation-delay: 0.5s; }
+  .falling-heart:nth-child(3) { left: 30%; animation-duration: 3.5s; animation-delay: 1s; }
+  .falling-heart:nth-child(4) { left: 40%; animation-duration: 4.5s; animation-delay: 1.5s; }
+  .falling-heart:nth-child(5) { left: 50%; animation-duration: 4s; animation-delay: 2s; }
+  .falling-heart:nth-child(6) { left: 60%; animation-duration: 5s; animation-delay: 0.3s; }
+  .falling-heart:nth-child(7) { left: 70%; animation-duration: 3.8s; animation-delay: 0.8s; }
+  .falling-heart:nth-child(8) { left: 80%; animation-duration: 4.2s; animation-delay: 1.2s; }
+</style>
+
+<div class="container mx-auto px-4 py-8 text-center romantic-bg">
+  <!-- Falling hearts -->
+  <div class="falling-hearts">
+    <div class="falling-heart"></div>
+    <div class="falling-heart"></div>
+    <div class="falling-heart"></div>
+    <div class="falling-heart"></div>
+    <div class="falling-heart"></div>
+    <div class="falling-heart"></div>
+    <div class="falling-heart"></div>
+    <div class="falling-heart"></div>
+  </div>
+
+  <h2 class="text-4xl font-bold text-rose-600 mb-6 relative z-10" style="font-family: 'Great Vibes', cursive;">
+    Love Gallery
+  </h2>
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p class="text-red-500 mb-4 relative z-10"><%= error %></p>
+  <% } %>
+  <form action="/login" method="POST" class="flex flex-col items-center gap-4 relative z-10">
+    <input type="text" name="username" placeholder="Username" required class="p-2 w-64 rounded-md border border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all duration-300">
+    <input type="password" name="password" placeholder="Password" required class="p-2 w-64 rounded-md border border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all duration-300">
+    <button type="submit" class="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+      Login
+    </button>
+  </form>
+</div>

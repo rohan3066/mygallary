@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+<div class="container mx-auto px-4 py-8 text-center">
+  <h2 class="text-4xl font-bold text-rose-600 mb-6">Edit Memory</h2>
+  <% if (error) { %>
+    <p class="text-red-500 mb-4"><%= error %></p>
+  <% } %>
+  <img src="<%= image.url %>" alt="Memory" class="w-48 mx-auto mb-4 rounded-md">
+  <form action="/edit/<%= image._id %>" method="POST" enctype="multipart/form-data" class="flex flex-col items-center gap-4">
+    <input type="file" name="image" accept="image/*" class="p-2 w-64">
+    <button type="submit" class="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700 transition">Update</button>
+  </form>
+  <a href="/gallery" class="mt-4 inline-block bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700 transition">Back to Gallery</a>
+</div>
+<%- include('partials/footer') %>
