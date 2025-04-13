@@ -19,7 +19,7 @@ app.use(
     secret: process.env.JWT_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+    store: MongoStore.create({ mongoUrl: `${process.env.MONGODB_URI}/mylove` }),
   })
 );
 app.set('view engine', 'ejs');
@@ -56,7 +56,7 @@ const seedUsers = async () => {
 };
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(`${process.env.MONGODB_URI}/mylove`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(async () => {
